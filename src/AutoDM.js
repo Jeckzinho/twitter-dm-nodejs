@@ -1,10 +1,10 @@
 const T = require("./Twit.js");
 const my_user_name = require("../config").userName;
-const timeout = 1000 * 60 * 3; // timeout to send the message 5 min
+const timeout = 1000 * 60 * 5; // timeout to send the message 5 min
 
 const AutoDM = () => {
   const stream = T.stream("user");
-  console.log("Come�ando a enviar as DM 🚀🚀🚀");
+  console.log("Start Sending Auto Direct Message ðŸš€ðŸš€ðŸš€");
   stream.on("follow", SendMessage);
 };
 
@@ -17,14 +17,14 @@ const SendMessage = user => {
   };
   // the follow stream track if I follow author person too.
   if (screen_name != my_user_name) {
-    console.log(" 🎉🎉🎉🎉 Novo seguidor  🎉🎉🎉🎉🎉 ");
+    console.log(" ðŸŽ‰ðŸŽ‰ðŸŽ‰ðŸŽ‰ New Follower  ðŸŽ‰ðŸŽ‰ðŸŽ‰ðŸŽ‰ðŸŽ‰ ");
     setTimeout(() => {
       T.post("direct_messages/new", obj)
         .catch(err => {
           console.error("error", err.stack);
         })
         .then(result => {
-          console.log(`DM enviada com sucesso para  ${screen_name}  💪💪`);
+          console.log(`Message sent successfully To  ${screen_name}  ðŸ’ªðŸ’ª`);
         });
     }, timeout);
   }
@@ -41,8 +41,8 @@ const GenerateMessage = name => {
   ];
   const d = new Date();
   const dayName = days[d.getDay()];
-  return `Ol� ${name} Obrigado por me seguir, se possivel de um RT no meu Tweet Fixado .... \n  https://twitter.com/Jeckzinho/status/418876166943277056 Happy ${dayName} 😊😊 `; // your message
-  // My message   return `Hi ${name} Thanks for being a part of my social media network. I'am the @PicsrushE founder,A new Online Image Editor completely with web technologies,I'm also a reactjs developer and medium blogger.\n Happy to discuss anytime 😊  \n Happy ${dayName} 😊😊 `;
+  return `Hi ${name} Thanks for .... \n Happy ${dayName} ðŸ˜ŠðŸ˜Š `; // your message
+  // My message   return `Hi ${name} Thanks for being a part of my social media network. I'am the @PicsrushE founder,A new Online Image Editor completely with web technologies,I'm also a reactjs developer and medium blogger.\n Happy to discuss anytime ðŸ˜Š  \n Happy ${dayName} ðŸ˜ŠðŸ˜Š `;
 };
 
 module.exports = AutoDM;
